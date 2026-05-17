@@ -1,0 +1,145 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Задание 1: Удаление нулей ===");
+        Task1();
+        
+        Console.WriteLine("\n=== Задание 2: Отрицательные -> положительные ===");
+        Task2();
+        
+        Console.WriteLine("\n=== Задание 3: Поиск числа в массиве ===");
+        Task3();
+        
+        Console.WriteLine("\n=== Задание 4: Перестановка столбцов в двумерном массиве ===");
+        Task4();
+    }
+    
+    // Задание 1
+    static void Task1()
+    {
+        Console.Write("Введите размер массива: ");
+        int n = int.Parse(Console.ReadLine());
+        int[] arr = new int[n];
+        
+        Console.WriteLine("Введите элементы массива:");
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write($"arr[{i}] = ");
+            arr[i] = int.Parse(Console.ReadLine());
+        }
+        
+        int index = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (arr[i] != 0)
+            {
+                arr[index] = arr[i];
+                index++;
+            }
+        }
+        
+        for (int i = index; i < n; i++)
+        {
+            arr[i] = -1;
+        }
+        
+        Console.WriteLine("Результат: " + string.Join(" ", arr));
+    }
+    
+   // Задание 2
+    static void Task2()
+    {
+        Console.Write("Введите размер массива: ");
+        int n = int.Parse(Console.ReadLine());
+        int[] arr = new int[n];
+        
+        Console.WriteLine("Введите элементы массива:");
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write($"arr[{i}] = ");
+            arr[i] = int.Parse(Console.ReadLine());
+        }
+        
+
+        var result = arr.Where(x => x < 0)
+                        .Concat(arr.Where(x => x >= 0))
+                        .ToArray();
+        
+        Console.WriteLine("Результат: " + string.Join(" ", result));
+    }
+    
+    // Задание 3
+    static void Task3()
+    {
+        Console.Write("Введите размер массива: ");
+        int n = int.Parse(Console.ReadLine());
+        int[] arr = new int[n];
+        
+        Console.WriteLine("Введите элементы массива:");
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write($"arr[{i}] = ");
+            arr[i] = int.Parse(Console.ReadLine());
+        }
+        
+        Console.Write("Какое число нужно найти? ");
+        int target = int.Parse(Console.ReadLine());
+        
+        int count = arr.Count(x => x == target);
+        Console.WriteLine($"Число {target} встречается {count} раз(а)");
+    }
+    
+    // Задание 4
+    static void Task4()
+    {
+        Console.Write("Введите количество строк M: ");
+        int m = int.Parse(Console.ReadLine());
+        Console.Write("Введите количество столбцов N: ");
+        int n = int.Parse(Console.ReadLine());
+        
+        int[,] matrix = new int[m, n];
+        
+        Console.WriteLine("Введите элементы матрицы:");
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                Console.Write($"matrix[{i},{j}] = ");
+                matrix[i, j] = int.Parse(Console.ReadLine());
+            }
+        }
+        
+        Console.Write("Введите номер первого столбца для обмена (0..{0}): ", n-1);
+        int col1 = int.Parse(Console.ReadLine());
+        Console.Write("Введите номер второго столбца для обмена (0..{0}): ", n-1);
+        int col2 = int.Parse(Console.ReadLine());
+        
+        if (col1 < 0 || col1 >= n || col2 < 0 || col2 >= n)
+        {
+            Console.WriteLine("Ошибка: неверный номер столбца");
+            return;
+        }
+        
+
+        for (int i = 0; i < m; i++)
+        {
+            int temp = matrix[i, col1];
+            matrix[i, col1] = matrix[i, col2];
+            matrix[i, col2] = temp;
+        }
+        
+        Console.WriteLine("Матрица после замены столбцов:");
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                Console.Write(matrix[i, j] + "\t");
+            }
+            Console.WriteLine();
+        }
+    }
+}
