@@ -17,7 +17,7 @@ class Program
         Task4();
     }
     
-    // Задание 1: Квадраты на прямоугольнике
+    // Задание 1
     static void Task1()
     {
         Console.Write("Введите A (длина прямоугольника): ");
@@ -44,7 +44,7 @@ class Program
         Console.WriteLine($"Площадь незанятой части: {unusedArea}");
     }
     
-    // Задание 2: Банковский вклад
+    // Задание 2
     static void Task2()
     {
         double initialDeposit = 10000;
@@ -72,7 +72,7 @@ class Program
         Console.WriteLine($"Итоговый размер вклада: {deposit:F2}");
     }
     
-    // Задание 3: Вывод чисел с повторениями
+    // Задание 3
     static void Task3()
     {
     Console.Write("Введите A: ");
@@ -97,7 +97,7 @@ class Program
         Console.WriteLine();
     }
 }
-    // Задание 4: Переворот числа
+    // Задание 4
     static void Task4()
     {
         Console.Write("Введите целое положительное число N: ");
